@@ -1,11 +1,37 @@
 <!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<title>index</title>
-</head>
-<body>
+<html ng-app="virApp">
+	<head>
+		<meta charset="utf-8">
+		<title>IVR Menu</title>
+		<link rel="stylesheet" href="./assets/libs/bootstrap.min.css">
+		<link rel="stylesheet" href="./assets/libs/font-awesome.css">
+		<link rel="stylesheet" href="./assets/css/ivr.css">
+		<script src="./assets/libs/angular.min.js"></script>
+		<script src="./assets/libs/jquery-2.2.0.min.js"></script>
+		<script src="./assets/js/ivr.js"></script>
+	</head>
+	<body class="container">
+		<div class="jumbotron">
+			<h1>IVR Menu</h1>
+		</div>
 
-</body>
+		<div ng-controller="VirCtrl">
+			<div class="row one" ng-repeat="btnNumber in btnNumbers">
+				<button class="btn btn-lg btn-primary">{{btnNumber.name}}</button>
+			</div>
+			<!-- <div class="row two"> -->
+			<!-- 	<button class="btn btn&#45;lg btn&#45;primary">2</button> -->
+			<!-- </div> -->
+			<!-- <div class="row three"> -->
+			<!-- 	<button class="btn btn&#45;lg btn&#45;primary">3</button> -->
+			<!-- </div> -->
+			<div class="row">
+				<button class="btn btn-lg btn-success"><i class="fa fa-plus"></i></button>
+			</div>
+			<div class="row">
+				<button class="btn btn-lg btn-danger"><i class="fa fa-minus"></i></button>
+			</div>
+		</div>
 
+	</body>
 </html>

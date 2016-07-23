@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="virApp">
+<html ng-app="ivrApp">
 	<head>
 		<meta charset="utf-8">
 		<title>IVR Menu</title>
@@ -11,21 +11,31 @@
 		<script src="./assets/js/ivr.js"></script>
 	</head>
 	<body class="container">
-		<div class="jumbotron">
-			<h1>IVR Menu</h1>
-		</div>
+		<!-- <div class="jumbotron"> -->
+		<!-- 	<h3>IVR Menu</h3> -->
+		<!-- </div> -->
 
-		<div ng-controller="VirCtrl">
-			<div class="row one" ng-repeat="btnNumber in btnNumbers">
-				<button class="btn btn-lg btn-primary">{{btnNumber.name}}</button>
+		<div ng-controller="IvrCtrl">
+
+			<div class="panel panel-info">
+				<div class="panel-heading">
+					<h3 class="text-center">{{ menuName }}</h3>
+				</div>
+				<div class="panel-body col-md-offset-1">
+					<div class="row" ng-repeat="menuBtn in menuBtns track by $index">
+						<button ng-click="showSubMenu($index)" class="btn btn-lg btn-primary">{{ $index + 1 }}</button>
+					</div>
+
+					<div class="row">
+						<button ng-model="btnAdd" ng-click="addMenu()" class="btn btn-lg btn-warning"><i class="fa fa-plus"></i></button>
+					</div>
+					<div class="row">
+						<button ng-model="btnRemove" ng-disabled="menuBtns.length <= 3" ng-click="removeMenu()" class="btn btn-lg btn-danger"><i class="fa fa-minus"></i></button>
+					</div>
+				</div>
 			</div>
-			<div class="row">
-				<button class="btn btn-lg btn-success"><i class="fa fa-plus"></i></button>
-			</div>
-			<div class="row">
-				<button class="btn btn-lg btn-danger"><i class="fa fa-minus"></i></button>
-			</div>
-		</div>
+
+		</div> <!-- end ivr controller -->
 
 	</body>
 </html>

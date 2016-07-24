@@ -23,14 +23,17 @@
 				</div>
 				<div class="panel-body col-md-offset-1">
 					<div class="row" ng-repeat="menuBtn in menuBtns track by $index">
-						<button ng-click="showSubMenu($index)" class="btn btn-lg btn-primary">{{ $index + 1 }}</button>
+						<button ng-click="showSubMenu($index)" class="btn btn-lg btn-primary">{{ (parentBtnName ? parentBtnName +'.' : '')+( $index + 1) }}</button>
 					</div>
 
 					<div class="row">
-						<button ng-model="btnAdd" ng-click="addMenu()" class="btn btn-lg btn-warning"><i class="fa fa-plus"></i></button>
+						<button ng-click="addMenu()" class="btn btn-lg btn-success"><i class="fa fa-plus"></i></button>
 					</div>
 					<div class="row">
-						<button ng-model="btnRemove" ng-disabled="menuBtns.length <= 3" ng-click="removeMenu()" class="btn btn-lg btn-danger"><i class="fa fa-minus"></i></button>
+						<button ng-click="removeMenu()" class="btn btn-lg btn-danger"><i class="fa fa-minus"></i></button>
+					</div>
+					<div class="row">
+						<button ng-click="back()" class="btn btn-lg btn-warning"><i class="fa fa-arrow-left"></i></button>
 					</div>
 				</div>
 			</div>

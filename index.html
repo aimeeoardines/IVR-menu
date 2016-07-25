@@ -7,13 +7,9 @@
 		<link rel="stylesheet" href="./assets/libs/font-awesome.css">
 		<link rel="stylesheet" href="./assets/css/ivr.css">
 		<script src="./assets/libs/angular.min.js"></script>
-		<script src="./assets/libs/jquery-2.2.0.min.js"></script>
 		<script src="./assets/js/ivr.js"></script>
 	</head>
 	<body class="container">
-		<!-- <div class="jumbotron"> -->
-		<!-- 	<h3>IVR Menu</h3> -->
-		<!-- </div> -->
 
 		<div ng-controller="IvrCtrl">
 
@@ -22,18 +18,19 @@
 					<h3 class="text-center">{{ menuName }}</h3>
 				</div>
 				<div class="panel-body col-md-offset-1">
-					<div class="row" ng-repeat="menuBtn in menuBtns track by $index">
-						<button ng-click="showSubMenu($index)" class="btn btn-lg btn-primary">{{ (parentBtnName ? parentBtnName +'.' : '')+( $index + 1) }}</button>
+					<div class="row" ng-repeat="menuBtn in currentMenuBtns.items track by $index">
+						<div class="col-md-2">
+							<button ng-click="showMenu($index)" class="btn btn-lg btn-primary">{{ (parentBtnName ? parentBtnName +'.' : '')+( $index + 1) }}</button>
+						</div>
+						<div class="col-md-10">
+							<h4>{{ menuBtn.name }}</h4>
+						</div>
 					</div>
 
 					<div class="row">
 						<button ng-click="addMenu()" class="btn btn-lg btn-success"><i class="fa fa-plus"></i></button>
-					</div>
-					<div class="row">
 						<button ng-click="removeMenu()" class="btn btn-lg btn-danger"><i class="fa fa-minus"></i></button>
-					</div>
-					<div class="row">
-						<button ng-click="back()" class="btn btn-lg btn-warning"><i class="fa fa-arrow-left"></i></button>
+						<button ng-click="prevMenu()" class="btn btn-lg btn-warning"><i class="fa fa-arrow-left"></i></button>
 					</div>
 				</div>
 			</div>

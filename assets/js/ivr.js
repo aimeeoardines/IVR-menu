@@ -1,46 +1,62 @@
 var ivrApp = angular.module('ivrApp', []);
 
 ivrApp.controller('IvrCtrl', function ($scope) {
-	$scope.menuBtns = [[],[],[]];
+	$scope.menuBtns = {
+		name : '',
+		items : [
+			{
+				name : 'Answer',
+				items : []
+			},
+			{
+				name : 'Set Music on Hold',
+				items : []
+			},
+			{
+				name : 'Tech Support',
+				items : []
+			}
+		]
+	}
+	$scope.currentMenuBtns = $scope.menuBtns;
 	$scope.menuName = 'IVR MENU';
 	$scope.navigation = [];
+	$scope.menuLabels = ['Answer', 'Set Music on Hold', 'Leave Voicemail', 'Tech Support', 'Wait', 'Record', 'Hangup'];
 
 	$scope.addMenu = function(){
-		$scope.menuBtns.push([]);
-		// console.log('++++',$scope.menuBtns);
-
+		var x = Math.floor((Math.random() * 6) + 0);
+		$scope.currentMenuBtns.items.push({ name : $scope.menuLabels[x], items : [] });
 	};
 
 	$scope.removeMenu = function(){
-		$scope.menuBtns.pop([]);
-		// console.log('---',$scope.menuBtns);
+		$scope.currentMenuBtns.items.pop({ name : '', items : []});
 	};
 
-	$scope.showSubMenu = function(index){
-		$scope.menuBtns = $scope.menuBtns[index];
+	$scope.showMenu = function(index){
+		$scope.navigation.push(index + 1);
+		$scope.page();
+	};
 
-		var indexValue = index + 1;
-		$scope.menuName = indexValue;
-		$scope.parentBtnName = indexValue;
+	$scope.prevMenu = function(){
+		$scope.navigation.pop([]);
+		$scope.page();
+	};
 
-		$scope.navigation.push(indexValue);
+	$scope.page = function(){
 		$scope.parentBtnName = $scope.navigation.join('.');
-		$scope.menuName = $scope.parentBtnName;
 
-		console.log('nav push',$scope.navigation);
+		if($scope.navigation == ''){
+			$scope.menuName = 'IVR MENU';
+		}
 
-	};
+		$scope.currentMenuBtns = $scope.menuBtns;
 
-	$scope.back = function(){
-		$scope.navigation.forEach(function(i){
-			$scope.arrayBack = $scope.navigation.pop([]);
-			console.log('nav pop',$scope.navigation);
-
-			// $scope.menuBtns = $scope.menuBtns[0[1[2]]];
-			// console.log('---',$scope.menuBtns);
+		$scope.navigation.forEach(function(item){
+			$scope.currentMenuBtns = $scope.currentMenuBtns.items[item-1];
+			$scope.menuName = $scope.parentBtnName;
 		});
-	};
 
+	};
 
 });
 

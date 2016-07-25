@@ -17,3 +17,6 @@ bower install
 # E N J O Y :)
 
 ```
+Note
+---
+Here is the plunker link if you like :)  http://plnkr.co/W7f5tQwnqxCV7tkB6x1p
